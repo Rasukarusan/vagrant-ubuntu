@@ -81,3 +81,14 @@
   - name: install fzf
     command: /root/.fzf/install
     changed_when: no
+
+  - name: download gdb-peda
+    git:
+        repo: 'https://github.com/longld/peda.git'
+        dest: /root/peda
+
+  - name: setting gdb-peda
+    copy:
+        dest: /root/.gdbinit
+        content: source /root/peda/peda.py
+
