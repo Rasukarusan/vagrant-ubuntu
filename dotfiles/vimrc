@@ -106,7 +106,8 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 nnoremap <C-e> <Esc>$a
 inoremap <C-e> <Esc>$a
-nnoremap ss zz
+nnoremap H 10h
+nnoremap L 10l
 nnoremap sa ^
 nnoremap se $
 vnoremap sa ^
@@ -159,3 +160,8 @@ nnoremap sy byw
 set noswapfile
 " ビープ音をOFFにする
 set belloff=all
+" source ~/.vimrcを簡略化
+nnoremap rr :source ~/.config/nvim/init.vim<CR>
+" 現在開いているスクリプトを読み込む
+nnoremap S :source %<CR>
+
