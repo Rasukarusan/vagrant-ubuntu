@@ -18,6 +18,7 @@
             - zsh
             - gdb
             - vim
+            - radare2
 
   - name: set default shell zsh
     user:
