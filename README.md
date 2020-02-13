@@ -25,4 +25,14 @@ $ VBoxManage -v
 ```shell
 $ vagrant up
 $ vagrant provision
+$ vagrant ssh-config >> ~/.ssh/config
 ```
+
+## Login
+
+
+```shell
+$ ssh 32bit
+$ ssh 64bit
+```
+
