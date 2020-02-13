@@ -11,7 +11,6 @@
     apt:
         name:
             - zsh
-            # - fzf
             - gdb
 
   - name: set default shell zsh
@@ -66,3 +65,13 @@
     git:
         repo: 'https://github.com/mollifier/anyframe'
         dest: /root/.zsh/anyframe
+
+  - name: download fzf
+    git:
+        repo: 'https://github.com/junegunn/fzf.git'
+        depth: 1
+        dest: /root/.fzf
+
+  - name: install fzf
+    command: /root/.fzf/install
+    changed_when: no
