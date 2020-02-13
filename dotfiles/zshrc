@@ -62,10 +62,10 @@ export FZF_DEFAULT_OPTS='--color=fg+:11 --height 70% --reverse --select-1 --exit
 # ================================================== #
 #
 # ============================== #
-#            Function            #
+#           Function             #
 # ============================== #
-function clean_cdr_cache_history() {
-    local function getDeleteNumbers() {
+clean_cdr_cache_history() {
+    local getDeleteNumbers() {
         local delete_line_number=1
         local delete_line_numbers=()
         while read line; do
@@ -93,7 +93,7 @@ function clean_cdr_cache_history() {
 #         Function-alias         #
 # ============================== #
 #
-function _process_kill_by_fzf(){
+_process_kill_by_fzf(){
     process=(`ps aux | awk '{print $2" "$9" "$11}' | fzf | awk '{print $1}'`)
     echo $process
     for item in ${process[@]}
@@ -102,7 +102,7 @@ function _process_kill_by_fzf(){
     done
 }
 
-function fzf-cdr() {
+fzf-cdr() {
     target_dir=`cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf`
     target_dir=`echo ${target_dir/\~/$HOME}`
     if [ -n "$target_dir" ]; then
@@ -110,7 +110,7 @@ function fzf-cdr() {
     fi
 }
 
-function _fgg() {
+_fgg() {
     wc=$(jobs | wc -l | tr -d ' ')
     if [ $wc -ne 0 ]; then
         job=$(jobs | awk -F "suspended" "{print $1 $2}"|sed -e "s/\-//g" -e "s/\+//g" -e "s/\[//g" -e "s/\]//g" | grep -v pwd | fzf | awk "{print $1}")
@@ -121,7 +121,7 @@ function _fgg() {
     fi
 }
 
-function _gitLogPreviewOpen() {
+_gitLogPreviewOpen() {
     hashCommit=`git log --oneline | fzf --height 100% --prompt "SELECT COMMIT>" --preview "echo {} | cut -d' ' -f1 | xargs git show --color=always"`
     if [ -n "$hashCommit" ]; then
         git show `echo ${hashCommit} | awk '{print $1}'`
@@ -167,5 +167,6 @@ alias late='less $(echo `ls -t | head -n 1`)'
 alias pspk='_pspk'
 alias fgg='_fgg'
 alias tigg='_gitLogPreviewOpen'
+alias bit='getconf LONG_BIT'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
