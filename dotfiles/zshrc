@@ -121,15 +121,6 @@ function _fgg() {
     fi
 }
 
-function _changeMode() {
-    ifconfig wlan0 down
-    iwconfig wlan0 mode $1
-    ifconfig wlan0 up
-}
-function _changeModeToMonitorByAirmon() {
-    airmon-ng check kill
-    airmon-ng start wlan0
-}
 function _gitLogPreviewOpen() {
     hashCommit=`git log --oneline | fzf --height 100% --prompt "SELECT COMMIT>" --preview "echo {} | cut -d' ' -f1 | xargs git show --color=always"`
     if [ -n "$hashCommit" ]; then
@@ -167,7 +158,6 @@ alias gst='git status'
 alias gca='git checkout $(git diff --name-only)'
 alias fin='echo `ls -t | head -n 1`'
 alias late='less $(echo `ls -t | head -n 1`)'
-alias monitor='airodump-ng wlan0mon'
 
 # ================================================== #
 #
@@ -177,8 +167,5 @@ alias monitor='airodump-ng wlan0mon'
 alias pspk='_pspk'
 alias fgg='_fgg'
 alias tigg='_gitLogPreviewOpen'
-alias modeToManage='_changeMode managed'
-alias modeToMonitor='_changeMode monitor'
-alias modeToMonitorByAirmon='_changeModeToMonitorByAirmon'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
